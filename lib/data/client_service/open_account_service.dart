@@ -45,17 +45,16 @@ class OpenAccountService {
             }
           },
           "PersonName": {
-            "GivenName": randomName.firstName(),
-            "MiddleName": randomName.middleName(),
-            "FamilyName": randomName.lastName(),
-            "FullName":
-                "${randomName.firstName()} ${randomName.middleName()} ${randomName.lastName()}"
+            "GivenName": firstName,
+            "MiddleName": middleName,
+            "FamilyName": lastName,
+            "FullName": "$firstName $middleName $lastName"
           },
           "Contact": [
             {
               "PostAddr": {
-                "Addr1": faker.address.streetName(),
-                "Addr2": faker.address.streetName(),
+                "Addr1": currentAddress,
+                "Addr2": permanentAddress,
                 "City": "C_289",
                 "PostalCode": "1",
                 "CountryCode": {"CountryCodeValue": "C_PH"},
@@ -63,7 +62,7 @@ class OpenAccountService {
               },
               "Email": {"EmailAddr": "email@email.com"},
               "PhoneNum": [
-                {"Phone": "1243445445", "PhoneType": "Mobile"},
+                {"Phone": mobileAddress, "PhoneType": "Mobile"},
                 {"Phone": "", "PhoneType": "Fax"}
               ]
             }
@@ -88,10 +87,10 @@ class OpenAccountService {
           {"RiskCategory": "RCCR_B"}
         ],
         "SourceOfWealth": [
-          {"OccupationalStat": faker.company.companyName()}
+          {"OccupationalStat": sourceOfIncome}
         ],
         "Employment": [
-          {"JobTitle": faker.company.companyName()}
+          {"JobTitle": jobTitle}
         ],
         "MBHasConsent": "true",
         "MBNatureofEmployment": "NOBADV",
@@ -117,7 +116,7 @@ class OpenAccountService {
     if (response.statusCode != 200) {
       throw Exception('Failed to open account');
     }
-    sendEmailNotif('hanscarreon0898@gmail.com');
+    sendEmailNotif(email);
   }
 
   Future<void> sendEmailNotif(String email) async {

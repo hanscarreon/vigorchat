@@ -1,6 +1,7 @@
 import 'package:chatvigor/data/client_service/open_account_service.dart';
 import 'package:chatvigor/domain/model/token/generate_token.dart';
 import 'package:chatvigor/domain/repository/open_repository.dart';
+import 'package:chatvigor/presentation/bloc/chat/chat_state.dart';
 
 class OpenAccountImpl extends OpenRepository {
   final OpenAccountService openAccountService;
@@ -17,19 +18,19 @@ class OpenAccountImpl extends OpenRepository {
   }
 
   @override
-  Future<void> openAccount() async {
+  Future<void> openAccount(ChatState state) async {
     openAccountService.openAccount(
       token: token,
-      email: email,
-      firstName: firstName,
-      lastName: lastName,
-      middleName: middleName,
-      permanentAddress: permanentAddress,
-      currentAddress: currentAddress,
-      emailAddress: emailAddress,
-      mobileAddress: mobileAddress,
-      jobTitle: jobTitle,
-      sourceOfIncome: sourceOfIncome,
+      email: state.email ?? '',
+      firstName: state.firstName ?? '',
+      lastName: state.lastName ?? '',
+      middleName: state.middleName ?? '',
+      permanentAddress: state.permanentAddress ?? '',
+      currentAddress: state.currentAddress ?? '',
+      emailAddress: state.email ?? '',
+      mobileAddress: state.mobileNumber ?? '',
+      jobTitle: state.jobTitle ?? '',
+      sourceOfIncome: state.sourceOfIncome ?? '',
     );
   }
 

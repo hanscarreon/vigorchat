@@ -69,7 +69,7 @@ class ChatBloc extends Bloc<ChatEvent, ChatState> {
     OnTapOpenAccountEvent event,
     Emitter<ChatState> emit,
   ) async {
-    openRepository.openAccount();
+    openRepository.openAccount(state);
   }
 
   FutureOr<void> _onSavedName(
@@ -87,29 +87,29 @@ class ChatBloc extends Bloc<ChatEvent, ChatState> {
     OnSaveAddressEvent event,
     Emitter<ChatState> emit,
   ) {
-    openRepository.saveAddress(
+    emit(state.copyWith(
       currentAddress: event.currentAddress,
       permanentAddress: event.permanentAddress,
-    );
+    ));
   }
 
   FutureOr<void> _onSaveContact(
     OnSavedContactEvent event,
     Emitter<ChatState> emit,
   ) {
-    openRepository.saveContact(
+    emit(state.copyWith(
       email: event.email,
       mobileNumber: event.mobileNumber,
-    );
+    ));
   }
 
   FutureOr<void> _onSavedEmployment(
     OnSavedEmplomentEvent event,
     Emitter<ChatState> emit,
   ) {
-    openRepository.saveEmployment(
-      sourceOfIncome: event.sourceOfIncome,
+    emit(state.copyWith(
       jobTitle: event.jobtitle,
-    );
+      sourceOfIncome: event.sourceOfIncome,
+    ));
   }
 }

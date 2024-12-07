@@ -15,6 +15,12 @@ class ChatState extends Equatable {
   final String? firstName;
   final String? lastName;
   final String? middleName;
+  final String? permanentAddress;
+  final String? currentAddress;
+  final String? email;
+  final String? mobileNumber;
+  final String? sourceOfIncome;
+  final String? jobTitle;
 
   const ChatState({
     required this.status,
@@ -23,12 +29,27 @@ class ChatState extends Equatable {
     this.firstName,
     this.lastName,
     this.middleName,
+    this.currentAddress,
+    this.permanentAddress,
+    this.email,
+    this.mobileNumber,
+    this.sourceOfIncome,
+    this.jobTitle,
   });
 
   static ChatState initial() => const ChatState(
         status: ChatStatus.initial,
         messages: [],
         token: null,
+        firstName: null,
+        lastName: null,
+        middleName: null,
+        currentAddress: null,
+        permanentAddress: null,
+        email: null,
+        mobileNumber: null,
+        sourceOfIncome: null,
+        jobTitle: null,
       );
 
   ChatState copyWith({
@@ -38,6 +59,12 @@ class ChatState extends Equatable {
     String? firstName,
     String? lastName,
     String? middleName,
+    String? currentAddress,
+    String? permanentAddress,
+    String? email,
+    String? mobileNumber,
+    String? sourceOfIncome,
+    String? jobTitle,
   }) =>
       ChatState(
         status: status ?? this.status,
@@ -46,6 +73,12 @@ class ChatState extends Equatable {
         firstName: firstName ?? this.firstName,
         lastName: lastName ?? this.lastName,
         middleName: middleName ?? this.middleName,
+        currentAddress: currentAddress ?? this.currentAddress,
+        permanentAddress: permanentAddress ?? this.permanentAddress,
+        email: email ?? this.email,
+        mobileNumber: mobileNumber ?? this.mobileNumber,
+        sourceOfIncome: sourceOfIncome ?? this.sourceOfIncome,
+        jobTitle: jobTitle ?? this.jobTitle,
       );
 
   @override
@@ -56,5 +89,11 @@ class ChatState extends Equatable {
         firstName,
         lastName,
         middleName,
+        permanentAddress,
+        currentAddress,
+        email,
+        mobileNumber,
+        sourceOfIncome,
+        jobTitle,
       ];
 }

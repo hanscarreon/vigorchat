@@ -1,3 +1,5 @@
+import 'package:chatvigor/presentation/bloc/chat/chat_state.dart';
+
 abstract class OpenRepository {
   String toEmail = '';
   String email = '';
@@ -14,7 +16,7 @@ abstract class OpenRepository {
 
   Future<String> generateToken();
 
-  void openAccount();
+  void openAccount(ChatState state);
 
   Future<void> sendEmailNotif(String email);
 
