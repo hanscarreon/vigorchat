@@ -12,9 +12,22 @@ import 'package:chatvigor/presentation/widget/message_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class ChatVigorScreen extends StatelessWidget {
+class ChatVigorScreen extends StatefulWidget {
   static const String routeName = '/chat-vigor';
   const ChatVigorScreen({super.key});
+
+  @override
+  State<ChatVigorScreen> createState() => _ChatVigorScreenState();
+}
+
+class _ChatVigorScreenState extends State<ChatVigorScreen> {
+  late ChatBloc chatBloc;
+
+  @override
+  void initState() {
+    super.initState();
+    chatBloc = BlocProvider.of<ChatBloc>(context);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -23,8 +36,8 @@ class ChatVigorScreen extends StatelessWidget {
       body: SafeArea(
         child: Column(
           children: [
-            BlocConsumer<ChatBloc, ChatState>(
-              listener: (context, state) {},
+            BlocBuilder<ChatBloc, ChatState>(
+              bloc: chatBloc,
               builder: (context, state) {
                 return Expanded(
                   child: SingleChildScrollView(
@@ -44,9 +57,8 @@ class ChatVigorScreen extends StatelessWidget {
                                   case MessageEnum.openAccount:
                                     final StepsCubit stepsCubit =
                                         BlocProvider.of<StepsCubit>(context);
-                                    final ChatBloc chatBloc =
-                                        BlocProvider.of<ChatBloc>(context);
-                                    showCreateUserDialog(
+
+                                    widget.showCreateUserDialog(
                                       context,
                                       stepCubit: stepsCubit,
                                       chatBloc: chatBloc,
@@ -67,7 +79,7 @@ class ChatVigorScreen extends StatelessWidget {
             ),
             MessageBar(
               onSend: (value) {
-                BlocProvider.of<ChatBloc>(context).add(
+                chatBloc.add(
                   OnChatSendMessageEvent(value),
                 );
               },

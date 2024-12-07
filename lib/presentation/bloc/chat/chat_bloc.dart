@@ -7,7 +7,6 @@ import 'package:chatvigor/domain/repository/chat_repository.dart';
 import 'package:chatvigor/domain/repository/open_repository.dart';
 import 'package:chatvigor/presentation/bloc/chat/chat_event.dart';
 import 'package:chatvigor/presentation/bloc/chat/chat_state.dart';
-import 'package:faker_dart/faker_dart.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class ChatBloc extends Bloc<ChatEvent, ChatState> {
@@ -77,7 +76,7 @@ class ChatBloc extends Bloc<ChatEvent, ChatState> {
     OnSaveNameEvent event,
     Emitter<ChatState> emit,
   ) {
-    openRepository.saveNames(
+    state.copyWith(
       firstName: event.firstName,
       lastName: event.lastName,
       middleName: event.middleName,
@@ -88,6 +87,7 @@ class ChatBloc extends Bloc<ChatEvent, ChatState> {
     OnSaveAddressEvent event,
     Emitter<ChatState> emit,
   ) {
+    print(state.firstName);
     openRepository.saveAddress(
       currentAddress: event.currentAddress,
       permanentAddress: event.permanentAddress,
