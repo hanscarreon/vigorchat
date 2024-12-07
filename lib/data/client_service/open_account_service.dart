@@ -1,6 +1,4 @@
-// import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:dio/dio.dart';
-import 'package:faker_dart/faker_dart.dart';
 
 class OpenAccountService {
   Future<Map<String, dynamic>> generateToken() async {
@@ -30,8 +28,6 @@ class OpenAccountService {
     required String sourceOfIncome,
   }) async {
     // final urlOpen = dotenv.env['OPEN_ACCOUNT'];
-    final faker = Faker.instance;
-    final randomName = faker.name;
     final request = {
       "PersonPartyInfo": {
         "CreateRefIdent": "210705-031-00000000006",
