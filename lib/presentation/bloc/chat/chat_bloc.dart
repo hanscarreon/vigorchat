@@ -76,18 +76,17 @@ class ChatBloc extends Bloc<ChatEvent, ChatState> {
     OnSaveNameEvent event,
     Emitter<ChatState> emit,
   ) {
-    state.copyWith(
+    emit(state.copyWith(
       firstName: event.firstName,
       lastName: event.lastName,
       middleName: event.middleName,
-    );
+    ));
   }
 
   FutureOr<void> _onSaveAddress(
     OnSaveAddressEvent event,
     Emitter<ChatState> emit,
   ) {
-    print(state.firstName);
     openRepository.saveAddress(
       currentAddress: event.currentAddress,
       permanentAddress: event.permanentAddress,
