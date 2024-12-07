@@ -53,12 +53,12 @@ class ChatService {
       ),
       MessageModel(
         id: '5',
-        message: 'hello wolrd',
+        message: 'hello world',
         createdAt: DateTime.now(),
         updatedAt: DateTime.now(),
         isSender: true,
         isWithCallback: true,
-        messageEnum: MessageEnum.rewards,
+        messageEnum: MessageEnum.text,
       ),
       MessageModel(
         id: '6',
@@ -67,7 +67,7 @@ class ChatService {
         updatedAt: DateTime.now(),
         isSender: false,
         isWithCallback: true,
-        messageEnum: MessageEnum.rewards,
+        messageEnum: MessageEnum.text,
       ),
     ];
   }

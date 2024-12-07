@@ -1,9 +1,13 @@
 import 'dart:async';
+import 'dart:math';
 
+import 'package:chatvigor/core/enum/message_enum.dart';
+import 'package:chatvigor/domain/model/message/message_model.dart';
 import 'package:chatvigor/domain/repository/chat_repository.dart';
 import 'package:chatvigor/domain/repository/open_repository.dart';
 import 'package:chatvigor/presentation/bloc/chat/chat_event.dart';
 import 'package:chatvigor/presentation/bloc/chat/chat_state.dart';
+import 'package:faker_dart/faker_dart.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class ChatBloc extends Bloc<ChatEvent, ChatState> {
@@ -41,7 +45,21 @@ class ChatBloc extends Bloc<ChatEvent, ChatState> {
   FutureOr<void> _onChatSendMessageEvent(
     OnChatSendMessageEvent event,
     Emitter<ChatState> emit,
-  ) {}
+  ) {
+    emit(state.copyWith(status: ChatStatus.loaded, messages: [
+      ...[
+        MessageModel(
+          message: event.message,
+          id: Random().nextInt(1000).toString(),
+          createdAt: DateTime.now(),
+          updatedAt: DateTime.now(),
+          isSender: true,
+          isWithCallback: true,
+          messageEnum: MessageEnum.text,
+        )
+      ]
+    ]));
+  }
 
   FutureOr<void> _onChatResetEvent(
     OnChatResetEvent event,

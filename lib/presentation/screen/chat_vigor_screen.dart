@@ -46,9 +46,6 @@ class ChatVigorScreen extends StatelessWidget {
                                         BlocProvider.of<StepsCubit>(context);
                                     final ChatBloc chatBloc =
                                         BlocProvider.of<ChatBloc>(context);
-                                    // chatBloc.add(
-                                    //   const OnTapOpenAccountEvent(),
-                                    // );
                                     showCreateUserDialog(
                                       context,
                                       stepCubit: stepsCubit,
