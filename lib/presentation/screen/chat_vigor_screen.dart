@@ -44,9 +44,15 @@ class ChatVigorScreen extends StatelessWidget {
                                   case MessageEnum.openAccount:
                                     final StepsCubit stepsCubit =
                                         BlocProvider.of<StepsCubit>(context);
+                                    final ChatBloc chatBloc =
+                                        BlocProvider.of<ChatBloc>(context);
+                                    // chatBloc.add(
+                                    //   const OnTapOpenAccountEvent(),
+                                    // );
                                     showCreateUserDialog(
                                       context,
                                       stepCubit: stepsCubit,
+                                      chatBloc: chatBloc,
                                     );
 
                                     break;

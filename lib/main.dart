@@ -4,7 +4,8 @@ import 'package:chatvigor/core/theme/app_theme.dart';
 import 'package:chatvigor/presentation/screen/landing_screen.dart';
 import 'package:flutter/material.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
   setupDependencies();
   runApp(const MyApp());
 }

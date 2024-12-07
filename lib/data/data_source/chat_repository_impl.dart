@@ -9,13 +9,11 @@ class ChatRepositoryImpl extends ChatRepository {
 
   @override
   Future<void> resetChat() {
-    // TODO: implement resetChat
     throw UnimplementedError();
   }
 
   @override
   Future<void> sendMessage(String message) {
-    // TODO: implement sendMessage
     throw UnimplementedError();
   }
 

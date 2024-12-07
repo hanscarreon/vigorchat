@@ -24,11 +24,6 @@ class AppInput extends StatelessWidget {
           controller: controller,
           decoration: InputDecoration(
             hintText: hintText,
-            errorText: validator != null
-                ? validator!(controller!.text).firstWhere(
-                    (element) => element != null,
-                    orElse: () => null)
-                : null,
           ),
         ),
         const SizedBox(height: 8),
